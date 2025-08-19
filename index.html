@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>کاور ارائه — شیت معماری</title>
+  <meta name="description" content="نسخه‌ی مینیمال: کاور + توضیحات + گالری چهارعکس با لایت‌باکس و ناوبری — تم Chinese Black" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* ── Chinese Black + Text Accents (Weldon Blue / Silver Pink) ───── */
+      --bg:#0E141C;          /* Chinese Black */
+      --panel:#111821;       /* کارت‌ها/پنل‌ها */
+      --text:#E6ECF3;        /* متن اصلی روشن */
+      --muted:#9FB3C8;       /* متن ثانویه پایه */
+      --border:rgba(255,255,255,.08); /* خطوط لطیف روشن */
+      --overlay:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.35) 55%,rgba(0,0,0,.65));
+      --blue:#8197AC;        /* Weldon Blue */
+      --silver:#BDB3A3;      /* Silver Pink */
+      --radius:16px;
+      --max:1200px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6}
+
+    /* ─── کاور ─────────────────────────────────────── */
+    .hero{position:relative;min-height:100vh;display:grid;place-items:end;isolation:isolate}
+    .hero::before{content:"";position:absolute;inset:0;background:url("img/hero.jpg") center/cover no-repeat;z-index:-2;filter:saturate(105%)}
+    .hero::after{content:"";position:absolute;inset:0;background:var(--overlay);z-index:-1}
+    .wrap{width:min(var(--max),100%);margin:auto;padding:22vh 24px 8vh}
+    .eyebrow{letter-spacing:.3em;color:var(--silver);font-size:12px;margin-bottom:10px;text-transform:uppercase}
+    .title{font-family:Montserrat,Inter;font-weight:800;font-size:clamp(28px,6.2vw,56px);line-height:1.1;color:var(--blue);margin:0}
+    .lead{max-width:820px;color:#D9E4EF;margin-top:10px}
+
+    /* ─── توضیحات بین کاور و گالری ─────────────────── */
+    .desc{padding:40px 0 24px;border-top:1px solid var(--border)}
+    .container{width:min(var(--max),100%);margin:0 auto;padding:0 24px}
+    .desc-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
+    .desc h2{font-family:Montserrat,Inter;font-weight:800;margin:0 0 10px;font-size:clamp(18px,3.6vw,28px);color:var(--blue)}
+    .desc p{margin:0 0 10px;color:var(--text)}
+    .desc .muted{color:var(--silver)}
+
+    /* ─── گالری چهارعکس ───────────────────────────── */
+    section.gallery{padding:56px 0 72px}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:zoom-in}
+    .card img{display:block;width:100%;height:280px;object-fit:cover;filter:brightness(.95)}
+    .caption{padding:14px}
+    .caption h3{font-family:Montserrat,Inter;font-weight:800;font-size:16px;margin:0 0 6px;color:var(--blue)}
+    .caption p{margin:0;color:var(--silver);font-size:13px}
+
+    /* ─── Lightbox ─────────────────────────────────── */
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(3,8,14,.92);z-index:100;padding:24px}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+    .lb-caption{position:absolute;inset-inline:24px;bottom:24px;text-align:center;color:var(--silver);font-size:14px;line-height:1.4}
+    .lb-close{position:absolute;top:14px;inset-inline-end:14px;width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:22px;cursor:pointer}
+    .lb-nav{position:absolute;inset-block:0;display:flex;align-items:center;gap:12px}
+    .lb-prev{inset-inline-start:12px}
+    .lb-next{inset-inline-end:12px}
+    .lb-btn{user-select:none;width:52px;height:52px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;display:grid;place-items:center;cursor:pointer}
+    .lb-btn:hover{background:rgba(255,255,255,.18)}
+
+    /* ─── واکنش‌گرا ───────────────────────────────── */
+    @media (max-width:1000px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .wrap{padding:28vh 16px 6vh} .grid{grid-template-columns:1fr} }
+
+    /* ─── چاپ ─────────────────────────────────────── */
+    @media print{ .hero{min-height:auto} .wrap{padding:120px 24px 40px} .desc{padding:24px 0} .gallery{padding:32px 0 40px} .lightbox{display:none!important} }
+  </style>
+</head>
+<body>
+  <!-- کاور -->
+  <section class="hero" aria-label="presentation cover">
+    <div class="wrap">
+      <div class="eyebrow">پرونده‌ی معماری</div>
+      <h1 class="title">CONCERT HALL IN NEW YORK</h1>
+      <p class="lead">زیرعنوان کوتاه پروژه — متن معرفی ۱ تا ۲ خطی برای ارائه. این بخش را با توضیح دلخواه جایگزین کنید.</p>
+    </div>
+  </section>
+
+  <!-- توضیحات -->
+  <section class="desc" aria-label="project description">
+    <div class="container desc-grid">
+      <div>
+        <h2>عنوان توضیحات</h2>
+        <p>اینجا توضیح کوتاه پروژه قرار می‌گیرد. می‌توانید کانسپت، سایت یا رویکرد طراحی را در ۲–۴ پاراگراف خلاصه کنید.</p>
+        <p class="muted">مثال: سازماندهی فضا بر اساس نور و دیدهای محوری، با تأکید بر مصالح مینیمال.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- گالری -->
+  <section class="gallery" aria-label="projects">
+    <div class="container grid" id="cards">
+      <figure class="card" data-large="img/project-1.jpg" data-idx="0">
+        <img src="img/project-1.jpg" alt="Project 1 preview" />
+        <figcaption class="caption">
+          <h3>Project Title 01</h3>
+          <p>Short description for this sheet / view. ابعاد، فاز، یا توضیح خلاصه.</p>
+        </figcaption>
+      </figure>
+      <figure class="card" data-large="img/project-2.jpg" data-idx="1">
+        <img src="img/project-2.jpg" alt="Project 2 preview" />
+        <figcaption class="caption">
+          <h3>Project Title 02</h3>
+          <p>Short description for this sheet / view. ابعاد، فاز، یا توضیح خلاصه.</p>
+        </figcaption>
+      </figure>
+      <figure class="card" data-large="img/project-3.jpg" data-idx="2">
+        <img src="img/project-3.jpg" alt="Project 3 preview" />
+        <figcaption class="caption">
+          <h3>Project Title 03</h3>
+          <p>Short description for this sheet / view. ابعاد، فاز، یا توضیح خلاصه.</p>
+        </figcaption>
+      </figure>
+      <figure class="card" data-large="img/project-4.jpg" data-idx="3">
+        <img src="img/project-4.jpg" alt="Project 4 preview" />
+        <figcaption class="caption">
+          <h3>Project Title 04</h3>
+          <p>Short description for this sheet / view. ابعاد، فاز، یا توضیح خلاصه.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- لایت‌باکس -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+    <button class="lb-close" id="lbClose" aria-label="بستن">×</button>
+    <div class="lb-nav lb-prev"><button class="lb-btn" id="lbPrev" aria-label="قبلی">❮</button></div>
+    <img id="lbImg" alt="full view" />
+    <div class="lb-nav lb-next"><button class="lb-btn" id="lbNext" aria-label="بعدی">❯</button></div>
+    <div class="lb-caption" id="lbCap"></div>
+  </div>
+
+  <script>
+    // کارت‌ها
+    const cards = Array.from(document.querySelectorAll('#cards .card'));
+    const lb     = document.getElementById('lightbox');
+    const lbImg  = document.getElementById('lbImg');
+    const lbCap  = document.getElementById('lbCap');
+    const btnPrev= document.getElementById('lbPrev');
+    const btnNext= document.getElementById('lbNext');
+    const btnClose=document.getElementById('lbClose');
+    let current = -1;
+
+    function showByIndex(i){
+      if(!cards.length) return;
+      current = (i + cards.length) % cards.length; // wrap
+      const fig = cards[current];
+      const src = fig.getAttribute('data-large') || fig.querySelector('img').src;
+      const title = fig.querySelector('h3')?.innerText || '';
+      const desc  = fig.querySelector('p')?.innerText || '';
+      lbImg.src = src; lbCap.textContent = `${title}${desc ? ' — ' + desc : ''}`;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB(){ lb.classList.remove('open'); lbImg.src=''; document.body.style.overflow=''; }
+    function prev(){ showByIndex(current-1); }
+    function next(){ showByIndex(current+1); }
+
+    // کلیک روی کارت → بازکردن لایت‌باکس
+    document.getElementById('cards').addEventListener('click', (e)=>{
+      const fig = e.target.closest('.card');
+      if(!fig) return;
+      const idx = cards.indexOf(fig);
+      showByIndex(idx);
+    });
+
+    // کنترل‌ها
+    btnPrev.addEventListener('click', (e)=>{ e.stopPropagation(); prev(); });
+    btnNext.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
+    btnClose.addEventListener('click', (e)=>{ e.stopPropagation(); closeLB(); });
+    lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
+
+    // کیبورد: Esc / چپ / راست
+    window.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLB();
+      else if(e.key === 'ArrowLeft') prev();
+      else if(e.key === 'ArrowRight') next();
+    });
+  </script>
+</body>
+</html>
