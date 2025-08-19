@@ -4,30 +4,34 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>کاور ارائه — شیت معماری</title>
-  <meta name="description" content="نسخه‌ی مینیمال: کاور + توضیحات + گالری چهارعکس با لایت‌باکس و ناوبری — تم Chinese Black با بلر بک‌گراند و لوگوی مرکزی" />
+  <meta name="description" content="کاور + توضیحات + گالری چهارعکس با لایت‌باکس و ناوبری — تم Chinese Black با لوگوی مرکزی" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* ── Chinese Black + Text Accents (Weldon Blue / Silver Pink) ───── */
-      --bg:#0E141C;          /* Chinese Black */
-      --panel:#111821;       /* کارت‌ها/پنل‌ها */
-      --text:#E6ECF3;        /* متن اصلی روشن */
-      --muted:#9FB3C8;       /* متن ثانویه پایه */
-      --border:rgba(255,255,255,.08); /* خطوط لطیف روشن */
+      /* Theme: Chinese Black + Weldon Blue / Silver Pink */
+      --bg:#0E141C;          /* background */
+      --panel:#111821;       /* cards */
+      --text:#E6ECF3;        /* main text */
+      --muted:#9FB3C8;       /* secondary text */
+      --border:rgba(255,255,255,.08);
       --overlay:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.35) 55%,rgba(0,0,0,.65));
       --blue:#8197AC;        /* Weldon Blue */
       --silver:#BDB3A3;      /* Silver Pink */
       --radius:16px;
       --max:1200px;
-      --logoSize:clamp(180px,30vw,360px);
+      --logoSize:clamp(180px,30vw,360px); /* اندازه لوگو */
     }
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6}
 
-    /* ─── کاور ─────────────────────────────────────── */
+    /* ── Hero ─────────────────────────────────────── */
     .hero{position:relative;min-height:100vh;display:grid;place-items:end;isolation:isolate}
-    /* بلر پس‌زمینه + کمی بزرگ‌نمایی برای جلوگیری از لبه‌های تیز بلر */
-    .hero::before{content:"";position:absolute;inset:0;background:url("img/hero.jpg") center/cover no-repeat;z-index:-2;filter:blur(10px) saturate(105%);transform:scale(1.06);transform-origin:center}
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background:url("img/hero.jpg") center/cover no-repeat;
+      z-index:-2;filter:blur(10px) saturate(105%);transform:scale(1.06);
+      transform-origin:center
+    }
     .hero::after{content:"";position:absolute;inset:0;background:var(--overlay);z-index:-1}
     .wrap{width:min(var(--max),100%);margin:auto;padding:18vh 24px 8vh;text-align:center}
     .logo{display:block;width:var(--logoSize);height:auto;margin:0 auto 14px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.45))}
@@ -35,15 +39,15 @@
     .title{font-family:Montserrat,Inter;font-weight:800;font-size:clamp(28px,6.2vw,56px);line-height:1.1;color:var(--blue);margin:0}
     .lead{max-width:820px;color:#D9E4EF;margin:10px auto 0}
 
-    /* ─── توضیحات بین کاور و گالری ─────────────────── */
+    /* ── Description ─────────────────────────────── */
     .desc{padding:40px 0 24px;border-top:1px solid var(--border)}
     .container{width:min(var(--max),100%);margin:0 auto;padding:0 24px}
-    .desc-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
+    .desc-grid{display:grid;grid-template-columns:1fr;gap:24px}
     .desc h2{font-family:Montserrat,Inter;font-weight:800;margin:0 0 10px;font-size:clamp(18px,3.6vw,28px);color:var(--blue);text-align:center}
     .desc p{margin:0 0 10px;color:var(--text);text-align:center}
     .desc .muted{color:var(--silver)}
 
-    /* ─── گالری چهارعکس ───────────────────────────── */
+    /* ── Gallery ─────────────────────────────────── */
     section.gallery{padding:56px 0 72px}
     .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
     .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:zoom-in}
@@ -52,7 +56,7 @@
     .caption h3{font-family:Montserrat,Inter;font-weight:800;font-size:16px;margin:0 0 6px;color:var(--blue)}
     .caption p{margin:0;color:var(--silver);font-size:13px}
 
-    /* ─── Lightbox ─────────────────────────────────── */
+    /* ── Lightbox ────────────────────────────────── */
     .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(3,8,14,.92);z-index:100;padding:24px}
     .lightbox.open{display:flex}
     .lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
@@ -64,20 +68,20 @@
     .lb-btn{user-select:none;width:52px;height:52px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:22px;display:grid;place-items:center;cursor:pointer}
     .lb-btn:hover{background:rgba(255,255,255,.18)}
 
-    /* ─── واکنش‌گرا ───────────────────────────────── */
+    /* ── Responsive ──────────────────────────────── */
     @media (max-width:1000px){ .grid{grid-template-columns:repeat(2,1fr)} }
     @media (max-width:640px){ .wrap{padding:16vh 16px 6vh} .grid{grid-template-columns:1fr} }
 
-    /* ─── چاپ ─────────────────────────────────────── */
+    /* ── Print ───────────────────────────────────── */
     @media print{ .hero{min-height:auto} .wrap{padding:120px 24px 40px} .desc{padding:24px 0} .gallery{padding:32px 0 40px} .lightbox{display:none!important} }
   </style>
 </head>
 <body>
-  <!-- کاور با لوگوی مرکزی و متن‌های وسط‌چین -->
+  <!-- Hero با لوگوی مرکزی -->
   <section class="hero" aria-label="presentation cover">
     <div class="wrap">
-      <!-- لوگو: فایل PNG خودت رو در مسیر img/logo.png آپلود کن -->
-      <img class="logo" src="img/logo.png" alt="لوگو" onerror="this.style.display='none'" />
+      <!-- لوگوی PNG را در img/logo.png بگذار -->
+      <img class="logo" src="img/logo.png" alt="لوگو" onerror="this.style.display='none'">
       <div class="eyebrow">پرونده‌ی معماری</div>
       <h1 class="title">CONCERT HALL IN NEW YORK</h1>
       <p class="lead">زیرعنوان کوتاه پروژه — متن معرفی ۱ تا ۲ خطی برای ارائه. این بخش را با توضیح دلخواه جایگزین کنید.</p>
@@ -99,28 +103,28 @@
   <section class="gallery" aria-label="projects">
     <div class="container grid" id="cards">
       <figure class="card" data-large="img/project-1.jpg" data-idx="0">
-        <img src="img/project-1.jpg" alt="Project 1 preview" />
+        <img src="img/project-1.jpg" alt="Project 1 preview">
         <figcaption class="caption">
           <h3>Project Title 01</h3>
           <p>Short description for this sheet / view. ابعاد، فاز، یا توضیح خلاصه.</p>
         </figcaption>
       </figure>
       <figure class="card" data-large="img/project-2.jpg" data-idx="1">
-        <img src="img/project-2.jpg" alt="Project 2 preview" />
+        <img src="img/project-2.jpg" alt="Project 2 preview">
         <figcaption class="caption">
           <h3>Project Title 02</h3>
           <p>Short description for this sheet / view. ابعاد، فاز، یا توضیح خلاصه.</p>
         </figcaption>
       </figure>
       <figure class="card" data-large="img/project-3.jpg" data-idx="2">
-        <img src="img/project-3.jpg" alt="Project 3 preview" />
+        <img src="img/project-3.jpg" alt="Project 3 preview">
         <figcaption class="caption">
           <h3>Project Title 03</h3>
           <p>Short description for this sheet / view. ابعاد، فاز، یا توضیح خلاصه.</p>
         </figcaption>
       </figure>
       <figure class="card" data-large="img/project-4.jpg" data-idx="3">
-        <img src="img/project-4.jpg" alt="Project 4 preview" />
+        <img src="img/project-4.jpg" alt="Project 4 preview">
         <figcaption class="caption">
           <h3>Project Title 04</h3>
           <p>Short description for this sheet / view. ابعاد، فاز، یا توضیح خلاصه.</p>
@@ -129,34 +133,35 @@
     </div>
   </section>
 
-  <!-- لایت‌باکس -->
+  <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
     <button class="lb-close" id="lbClose" aria-label="بستن">×</button>
     <div class="lb-nav lb-prev"><button class="lb-btn" id="lbPrev" aria-label="قبلی">❮</button></div>
-    <img id="lbImg" alt="full view" />
+    <img id="lbImg" alt="full view">
     <div class="lb-nav lb-next"><button class="lb-btn" id="lbNext" aria-label="بعدی">❯</button></div>
     <div class="lb-caption" id="lbCap"></div>
   </div>
 
   <script>
-    // کارت‌ها
-    const cards = Array.from(document.querySelectorAll('#cards .card'));
-    const lb     = document.getElementById('lightbox');
-    const lbImg  = document.getElementById('lbImg');
-    const lbCap  = document.getElementById('lbCap');
-    const btnPrev= document.getElementById('lbPrev');
-    const btnNext= document.getElementById('lbNext');
-    const btnClose=document.getElementById('lbClose');
+    // Cards & Lightbox
+    const cards   = Array.from(document.querySelectorAll('#cards .card'));
+    const lb      = document.getElementById('lightbox');
+    const lbImg   = document.getElementById('lbImg');
+    const lbCap   = document.getElementById('lbCap');
+    const btnPrev = document.getElementById('lbPrev');
+    const btnNext = document.getElementById('lbNext');
+    const btnClose= document.getElementById('lbClose');
     let current = -1;
 
     function showByIndex(i){
       if(!cards.length) return;
       current = (i + cards.length) % cards.length; // wrap
-      const fig = cards[current];
-      const src = fig.getAttribute('data-large') || fig.querySelector('img').src;
+      const fig   = cards[current];
+      const src   = fig.getAttribute('data-large') || fig.querySelector('img').src;
       const title = fig.querySelector('h3')?.innerText || '';
       const desc  = fig.querySelector('p')?.innerText || '';
-      lbImg.src = src; lbCap.textContent = `${title}${desc ? ' — ' + desc : ''}`;
+      lbImg.src = src;
+      lbCap.textContent = `${title}${desc ? ' — ' + desc : ''}`;
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -164,21 +169,17 @@
     function prev(){ showByIndex(current-1); }
     function next(){ showByIndex(current+1); }
 
-    // کلیک روی کارت → بازکردن لایت‌باکس
     document.getElementById('cards').addEventListener('click', (e)=>{
       const fig = e.target.closest('.card');
       if(!fig) return;
-      const idx = cards.indexOf(fig);
-      showByIndex(idx);
+      showByIndex(cards.indexOf(fig));
     });
 
-    // کنترل‌ها
     btnPrev.addEventListener('click', (e)=>{ e.stopPropagation(); prev(); });
     btnNext.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
     btnClose.addEventListener('click', (e)=>{ e.stopPropagation(); closeLB(); });
     lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLB(); });
 
-    // کیبورد: Esc / چپ / راست
     window.addEventListener('keydown', (e)=>{
       if(!lb.classList.contains('open')) return;
       if(e.key === 'Escape') closeLB();
